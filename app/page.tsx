@@ -1,4 +1,4 @@
-import { getTypes } from "../../lib/getTypes";
+import { getTypes } from "../lib/getTypes";
 import Table from "./Table";
 
 export default async function Page() {

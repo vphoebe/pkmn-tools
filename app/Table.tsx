@@ -1,7 +1,7 @@
 "use client";
 
-import { TypeData } from "../../lib/getTypes";
-import { getMultiplier, valueColorMap } from "../../lib/multiplier";
+import { TypeData } from "../lib/getTypes";
+import { getMultiplier, valueColorMap } from "../lib/multiplier";
 import * as React from "react";
 
 function MultiplierCell({ value }: { value: number }) {
