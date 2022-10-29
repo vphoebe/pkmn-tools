@@ -10,7 +10,7 @@ export default function RootLayout({
       <head>
         <title>dual-type-chart</title>
       </head>
-      <body>{children}</body>
+      <body className="bg-slate-300">{children}</body>
     </html>
   );
 }
