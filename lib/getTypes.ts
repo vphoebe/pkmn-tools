@@ -24,14 +24,21 @@ interface RawTypeData {
 
 export type Generation = "generation-i" | "generation-v" | "current";
 
+export function getGenNumberFromUrl(url: string): number | null {
+  const lastDigitTest = /(\d)\/$/;
+  const typeIntroducedGenNumberMatches = url.match(lastDigitTest);
+  if (typeIntroducedGenNumberMatches) {
+    return parseInt(typeIntroducedGenNumberMatches[1]);
+  } else {
+    return null;
+  }
+}
+
 function trimDataToGeneration(data: RawTypeData[], generation: Generation) {
   const filteredData = data.filter((d) => {
     if (generation !== "current") {
-      const lastDigitTest = /(\d)\/$/;
-      const typeIntroducedGenNumberMatches =
-        d.generation.url.match(lastDigitTest);
-      if (typeIntroducedGenNumberMatches) {
-        const genNumber = parseInt(typeIntroducedGenNumberMatches[1]);
+      const genNumber = getGenNumberFromUrl(d.generation.url);
+      if (genNumber) {
         if (generation === "generation-i") return genNumber <= 1;
         if (generation === "generation-v") return genNumber <= 5;
       }
@@ -40,7 +47,7 @@ function trimDataToGeneration(data: RawTypeData[], generation: Generation) {
   });
   return filteredData.map((obj) => {
     let damageObject = obj.damage_relations;
-    if (generation) {
+    if (generation !== "current") {
       const pastDamageRelations = obj.past_damage_relations.find(
         (pdr: any) => pdr.generation.name === generation
       );

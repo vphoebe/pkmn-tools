@@ -1,4 +1,4 @@
-import { TypeData } from "../lib/getTypes";
+import { Generation, TypeData } from "../lib/getTypes";
 import * as React from "react";
 import { GenSelector } from "./GenSelector";
 import { DefendingSection } from "./DefendingSection";
@@ -8,11 +8,13 @@ import { PokemonListItem } from "../lib/getPokemonList";
 export interface TypeChartToolProps {
   typeData: TypeData[];
   pokemonList: PokemonListItem[];
+  gen: Generation;
 }
 
 export default function TypeChartTool({
   typeData,
   pokemonList,
+  gen,
 }: TypeChartToolProps) {
   const typeList = typeData.map((d) => d.name);
   const [defenseTypes, setDefenseTypes] = React.useState<string[]>([
@@ -28,6 +30,7 @@ export default function TypeChartTool({
         defenseTypes={defenseTypes}
         setDefenseTypes={setDefenseTypes}
         pokemonList={pokemonList}
+        gen={gen}
       />
       <AttackTable
         data={typeData}

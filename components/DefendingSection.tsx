@@ -2,26 +2,41 @@ import { PokemonListItem } from "../lib/getPokemonList";
 import { TypeSelector } from "./TypeSelector";
 import Select from "react-select";
 import * as React from "react";
-import { Generation } from "../lib/getTypes";
+import { Generation, getGenNumberFromUrl } from "../lib/getTypes";
 
 interface DefendingSectionProps {
   typeList: string[];
   defenseTypes: string[];
   setDefenseTypes: any;
   pokemonList: PokemonListItem[];
+  gen: Generation;
 }
 
-async function getPokemonTypesByName(name: string, generation: Generation) {
+async function getPokemonTypesByName(
+  name: string,
+  generation: Generation
+): Promise<{ type1: string; type2: string }> {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  if (!res.ok) return;
   const json = await res.json();
   const { types, past_types } = json;
-  if (generation === "current") {
-    return {
-      type1: types[0].type.name,
-      type2: types[1]?.type.name,
-    };
+  if (generation !== "current" && past_types.length) {
+    const oldTypeChange = past_types[0];
+    const oldTypeGenNumber = getGenNumberFromUrl(oldTypeChange.generation.url);
+    // can't be current gen
+    const currentGenNumber = generation === "generation-v" ? 5 : 1;
+    if (oldTypeGenNumber && oldTypeGenNumber <= currentGenNumber) {
+      return {
+        type1: oldTypeChange.types[0].type.name,
+        type2: oldTypeChange.types[1]
+          ? oldTypeChange.types[1].type.name
+          : "none",
+      };
+    }
   }
+  return {
+    type1: types[0].type.name,
+    type2: types[1] ? types[1].type.name : "none",
+  };
 }
 
 function PokemonSelector({
@@ -55,16 +70,17 @@ export function DefendingSection({
   defenseTypes,
   setDefenseTypes,
   pokemonList,
+  gen,
 }: DefendingSectionProps) {
   const [pokemon, setPokemon] = React.useState<{ value: string } | null>(null);
 
   React.useEffect(() => {
     if (pokemon) {
-      getPokemonTypesByName(pokemon.value, "current").then((obj) => {
+      getPokemonTypesByName(pokemon.value, gen).then((obj) => {
         setDefenseTypes([obj?.type1 ?? "none", obj?.type2 ?? "none"]);
       });
     }
-  }, [pokemon, setDefenseTypes]);
+  }, [pokemon, setDefenseTypes, gen]);
 
   return (
     <div>

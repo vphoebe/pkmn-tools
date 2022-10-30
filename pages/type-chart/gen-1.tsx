@@ -1,15 +1,23 @@
 import TypeChartTool, { TypeChartToolProps } from "../../components/Tool";
 import { getPokemonList } from "../../lib/getPokemonList";
-import { getTypes } from "../../lib/getTypes";
+import { Generation, getTypes } from "../../lib/getTypes";
 
-export default function Current({ typeData, pokemonList }: TypeChartToolProps) {
-  return <TypeChartTool typeData={typeData} pokemonList={pokemonList} />;
+export default function Current({
+  typeData,
+  pokemonList,
+  gen,
+}: TypeChartToolProps) {
+  return (
+    <TypeChartTool typeData={typeData} pokemonList={pokemonList} gen={gen} />
+  );
 }
 
 export async function getStaticProps() {
-  const typeData = await getTypes("generation-i");
+  const gen: Generation = "generation-i";
+  const typeData = await getTypes(gen);
+  console.log("gen1", typeData);
   const pokemonList = await getPokemonList();
   return {
-    props: { typeData, pokemonList },
+    props: { typeData, pokemonList, gen },
   };
 }
