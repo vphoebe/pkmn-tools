@@ -18,7 +18,7 @@ export function GenSelector() {
   const { pathname } = useRouter();
 
   return (
-    <div className="flex gap-x-2 items-center mb-4 font-mono">
+    <div className="flex gap-x-2 items-center mb-4 ">
       <span>Gen:</span>
       <GenButton href="/type-chart/gen-1" label="1" />
       <GenButton href="/type-chart/gen-2-5" label="2-5" />

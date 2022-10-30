@@ -60,8 +60,8 @@ export function AttackTable({
 
   return (
     <React.Fragment>
-      <div className="font-mono w-full text-center mb-4">Attacking:</div>
-      <table className="table-auto w-full h-full font-mono">
+      <div className=" w-full text-center mb-4">Attacking:</div>
+      <table className="table-auto w-full h-full ">
         <tbody>
           {attackRowValues.map((row) => (
             <AttackRow key={row.attackName} {...row} />

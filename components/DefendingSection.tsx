@@ -17,8 +17,8 @@ export function DefendingSection({
 }: DefendingSectionProps) {
   return (
     <div>
-      <div className="font-mono w-full text-center mb-4">Defending:</div>
-      <div className="flex mb-4 w-full gap-x-2 font-mono items-center">
+      <div className=" w-full text-center mb-4">Defending:</div>
+      <div className="flex mb-4 w-full gap-x-2  items-center">
         <TypeSelector
           types={typeList.filter((t) => t !== defenseName2)}
           value={defenseName1}
