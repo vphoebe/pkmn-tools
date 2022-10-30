@@ -26,6 +26,7 @@ module.exports = {
       dragon: "#7038f8",
       dark: "#705848",
       fairy: "#ee99ac",
+      blue: colors.blue,
       slate: colors.slate,
       double: "#23eb80",
       half: "#e6aa9a",
@@ -38,7 +39,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|half|double|quarter|quad|slate)/,
+        /(bg|text|border)-(normal|fighting|flying|poison|ground|rock|bug|ghost|steel|fire|water|grass|electric|psychic|ice|dragon|dark|fairy|half|double|quarter|quad|slate|blue)/,
     },
   ],
 };
