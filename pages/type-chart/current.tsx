@@ -1,3 +1,5 @@
+import Head from "next/head";
+import React from "react";
 import TypeChartTool, { TypeChartToolProps } from "../../components/Tool";
 import { getPokemonList } from "../../lib/getPokemonList";
 import { Generation, getTypes } from "../../lib/getTypes";
@@ -8,7 +10,12 @@ export default function Current({
   gen,
 }: TypeChartToolProps) {
   return (
-    <TypeChartTool typeData={typeData} pokemonList={pokemonList} gen={gen} />
+    <React.Fragment>
+      <Head>
+        <title>Type chart (Gen. 6+) | vphoebe&apos;s pkmn tools</title>
+      </Head>
+      <TypeChartTool typeData={typeData} pokemonList={pokemonList} gen={gen} />
+    </React.Fragment>
   );
 }
 

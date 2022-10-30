@@ -1,14 +1,21 @@
+import Head from "next/head";
+import React from "react";
 import TypeChartTool, { TypeChartToolProps } from "../../components/Tool";
 import { getPokemonList } from "../../lib/getPokemonList";
 import { Generation, getTypes } from "../../lib/getTypes";
 
-export default function Current({
+export default function Gen2To5({
   typeData,
   pokemonList,
   gen,
 }: TypeChartToolProps) {
   return (
-    <TypeChartTool typeData={typeData} pokemonList={pokemonList} gen={gen} />
+    <React.Fragment>
+      <Head>
+        <title>Type chart (Gens. 2-5) | vphoebe&apos;s pkmn tools</title>
+      </Head>
+      <TypeChartTool typeData={typeData} pokemonList={pokemonList} gen={gen} />
+    </React.Fragment>
   );
 }
 
