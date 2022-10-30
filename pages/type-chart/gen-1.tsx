@@ -15,7 +15,6 @@ export default function Current({
 export async function getStaticProps() {
   const gen: Generation = "generation-i";
   const typeData = await getTypes(gen);
-  console.log("gen1", typeData);
   const pokemonList = await getPokemonList();
   return {
     props: { typeData, pokemonList, gen },
