@@ -56,16 +56,32 @@ export function AttackTable({
     return values.sort((a, b) => b.multiplier - a.multiplier);
   }, [data, defenseTypes, typeList]);
 
+  const positiveRows = attackRowValues.filter((row) => row.multiplier > 1);
+  const negativeRows = attackRowValues.filter((row) => row.multiplier < 1);
+
   return defenseTypes[0] !== "none" ? (
     <div className="border border-slate-400 p-2 rounded-sm">
-      <div className=" w-full text-center mb-2">Attacking:</div>
-      <table className="table-auto w-full h-full">
-        <tbody>
-          {attackRowValues.map((row) => (
-            <AttackRow key={row.attackName} {...row} />
-          ))}
-        </tbody>
-      </table>
+      <div className="w-full text-center mb-2 italic">Attacking:</div>
+      <div className="flex gap-x-4">
+        <div className="w-full">
+          <table className="table-auto w-full">
+            <tbody>
+              {positiveRows.map((row) => (
+                <AttackRow key={row.attackName} {...row} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="w-full">
+          <table className="table-auto w-full">
+            <tbody>
+              {negativeRows.map((row) => (
+                <AttackRow key={row.attackName} {...row} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   ) : null;
 }

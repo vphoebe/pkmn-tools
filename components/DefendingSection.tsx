@@ -99,7 +99,7 @@ export function DefendingSection({
 
   return (
     <div className="border border-slate-400 p-2 rounded-sm mb-4">
-      <div className="w-full text-center mb-4">Defending:</div>
+      <div className="w-full text-center italic mb-2">Defending:</div>
       <div className="mb-4 flex h-12 items-center">
         <PokemonSelector
           pokemonList={pokemonList}
@@ -125,6 +125,7 @@ export function DefendingSection({
             setPokemon(null);
             setDefenseTypes([e.currentTarget.value, defenseTypes[1]]);
           }}
+          isDisabled={!!pokemon}
         />
         /
         <TypeSelector
@@ -134,6 +135,7 @@ export function DefendingSection({
             setPokemon(null);
             setDefenseTypes([defenseTypes[0], e.currentTarget.value]);
           }}
+          isDisabled={!!pokemon}
         />
       </div>
     </div>
