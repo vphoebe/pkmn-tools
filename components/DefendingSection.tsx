@@ -6,14 +6,12 @@ import { Generation } from "../lib/getTypes";
 
 interface DefendingSectionProps {
   typeList: string[];
-  defenseName1?: string;
-  defenseName2?: string;
-  setDefenseName1: any;
-  setDefenseName2: any;
+  defenseTypes: string[];
+  setDefenseTypes: any;
   pokemonList: PokemonListItem[];
 }
 
-async function getPokemonByName(name: string, generation: Generation) {
+async function getPokemonTypesByName(name: string, generation: Generation) {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   if (!res.ok) return;
   const json = await res.json();
@@ -54,22 +52,19 @@ function PokemonSelector({
 
 export function DefendingSection({
   typeList,
-  defenseName1,
-  defenseName2,
-  setDefenseName1,
-  setDefenseName2,
+  defenseTypes,
+  setDefenseTypes,
   pokemonList,
 }: DefendingSectionProps) {
   const [pokemon, setPokemon] = React.useState<{ value: string } | null>(null);
 
   React.useEffect(() => {
     if (pokemon) {
-      getPokemonByName(pokemon.value, "current").then((obj) => {
-        setDefenseName1(obj?.type1);
-        setDefenseName2(obj?.type2);
+      getPokemonTypesByName(pokemon.value, "current").then((obj) => {
+        setDefenseTypes([obj?.type1 ?? "none", obj?.type2 ?? "none"]);
       });
     }
-  }, [pokemon, setDefenseName1, setDefenseName2]);
+  }, [pokemon, setDefenseTypes]);
 
   return (
     <div>
@@ -83,15 +78,21 @@ export function DefendingSection({
       </div>
       <div className="flex mb-4 w-full gap-x-2 items-center">
         <TypeSelector
-          types={typeList.filter((t) => t !== defenseName2)}
-          value={defenseName1}
-          onChange={(e) => setDefenseName1(e.currentTarget.value)}
+          types={typeList.filter((t) => t !== defenseTypes[1])}
+          value={defenseTypes[0]}
+          onChange={(e) => {
+            setPokemon(null);
+            setDefenseTypes([e.currentTarget.value, defenseTypes[1]]);
+          }}
         />
         /
         <TypeSelector
-          types={typeList.filter((t) => t !== defenseName1)}
-          value={defenseName2}
-          onChange={(e) => setDefenseName2(e.currentTarget.value)}
+          types={typeList.filter((t) => t !== defenseTypes[0])}
+          value={defenseTypes[1]}
+          onChange={(e) => {
+            setPokemon(null);
+            setDefenseTypes([defenseTypes[0], e.currentTarget.value]);
+          }}
         />
       </div>
     </div>

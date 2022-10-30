@@ -15,29 +15,24 @@ export default function TypeChartTool({
   pokemonList,
 }: TypeChartToolProps) {
   const typeList = typeData.map((d) => d.name);
-  const [defenseName1, setDefenseName1] = React.useState<string | undefined>(
-    undefined
-  );
-  const [defenseName2, setDefenseName2] = React.useState<string | undefined>(
-    undefined
-  );
+  const [defenseTypes, setDefenseTypes] = React.useState<string[]>([
+    "none",
+    "none",
+  ]);
 
   return (
     <div className="max-w-sm mx-auto">
       <GenSelector />
       <DefendingSection
         typeList={typeList}
-        defenseName1={defenseName1}
-        defenseName2={defenseName2}
-        setDefenseName1={setDefenseName1}
-        setDefenseName2={setDefenseName2}
+        defenseTypes={defenseTypes}
+        setDefenseTypes={setDefenseTypes}
         pokemonList={pokemonList}
       />
       <AttackTable
         data={typeData}
         typeList={typeList}
-        defenseName1={defenseName1}
-        defenseName2={defenseName2}
+        defenseTypes={defenseTypes}
       />
     </div>
   );

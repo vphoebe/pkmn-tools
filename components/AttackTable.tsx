@@ -5,8 +5,7 @@ import { getMultiplier, valueColorMap } from "../lib/multiplier";
 interface AttackTableProps {
   data: TypeData[];
   typeList: string[];
-  defenseName1?: string;
-  defenseName2?: string;
+  defenseTypes: string[];
 }
 
 const globalCellClasses =
@@ -44,19 +43,15 @@ function AttackRow({
 export function AttackTable({
   data,
   typeList,
-  defenseName1,
-  defenseName2,
+  defenseTypes,
 }: AttackTableProps) {
   const attackRowValues = React.useMemo(() => {
     const values = typeList.map((attackName) => {
-      const multiplier = getMultiplier(data, attackName, [
-        defenseName1,
-        defenseName2,
-      ]);
+      const multiplier = getMultiplier(data, attackName, defenseTypes);
       return { attackName, multiplier };
     });
     return values.sort((a, b) => b.multiplier - a.multiplier);
-  }, [data, defenseName1, defenseName2, typeList]);
+  }, [data, defenseTypes, typeList]);
 
   return (
     <React.Fragment>

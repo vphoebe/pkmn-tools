@@ -24,11 +24,14 @@ function getSingleTypeDamageValue(
 export function getMultiplier(
   data: TypeData[],
   attackName: string,
-  defenseNames: (string | undefined)[]
+  defenseNames: string[]
 ) {
   return defenseNames.reduce((prev, current) => {
     return (
-      prev * (current ? getSingleTypeDamageValue(data, attackName, current) : 1)
+      prev *
+      (current !== "none"
+        ? getSingleTypeDamageValue(data, attackName, current)
+        : 1)
     );
   }, 1);
 }
