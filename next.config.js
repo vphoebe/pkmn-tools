@@ -11,6 +11,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/type-chart",
+        destination: "/type-chart/current",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
