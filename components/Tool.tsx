@@ -23,7 +23,7 @@ export default function TypeChartTool({
   ]);
 
   return (
-    <div className="max-w-sm mx-auto mt-8">
+    <div className="max-w-sm mx-auto mt-8 px-4">
       <GenSelector />
       <DefendingSection
         typeList={typeList}

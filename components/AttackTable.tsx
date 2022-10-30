@@ -13,9 +13,15 @@ const globalCellClasses = "border border-2 border-slate-300";
 function MultiplierCell({ value }: { value: number }) {
   return (
     <td
-      className={`align-middle text-center ${valueColorMap[value]} ${globalCellClasses}`}
+      className={`align-middle text-center font-bold ${valueColorMap[value]} ${globalCellClasses}`}
     >
-      {value === 0.5 ? "½" : value === 0.25 ? "¼" : value.toString()}
+      {value === 0
+        ? "X"
+        : value === 0.5
+        ? "½"
+        : value === 0.25
+        ? "¼"
+        : value.toString()}
     </td>
   );
 }
@@ -29,9 +35,7 @@ function AttackRow({
 }) {
   return multiplier !== 1 ? (
     <tr key={`${attackName}-row`}>
-      <td
-        className={`bg-${attackName} font-bold text-right py-2 pr-2 ${globalCellClasses}`}
-      >
+      <td className={`bg-${attackName} text-right pr-2 ${globalCellClasses}`}>
         {attackName}
       </td>
       <MultiplierCell key={`${attackName}-cell`} value={multiplier} />
@@ -54,8 +58,8 @@ export function AttackTable({
 
   return defenseTypes[0] !== "none" ? (
     <div className="border border-slate-400 p-2 rounded-sm">
-      <div className=" w-full text-center mb-4">Attacking:</div>
-      <table className="table-auto w-full h-full ">
+      <div className=" w-full text-center mb-2">Attacking:</div>
+      <table className="table-auto w-full h-full">
         <tbody>
           {attackRowValues.map((row) => (
             <AttackRow key={row.attackName} {...row} />
