@@ -53,7 +53,7 @@ export function AttackTable({
     return values.sort((a, b) => b.multiplier - a.multiplier);
   }, [data, defenseTypes, typeList]);
 
-  return (
+  return defenseTypes[0] !== "none" ? (
     <React.Fragment>
       <div className=" w-full text-center mb-4">Attacking:</div>
       <table className="table-auto w-full h-full ">
@@ -64,5 +64,5 @@ export function AttackTable({
         </tbody>
       </table>
     </React.Fragment>
-  );
+  ) : null;
 }
