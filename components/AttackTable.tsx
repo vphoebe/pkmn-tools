@@ -13,7 +13,7 @@ const globalCellClasses = "border border-2 border-slate-300";
 function MultiplierCell({ value }: { value: number }) {
   return (
     <td
-      className={`align-middle text-center font-bold ${valueColorMap[value]} ${globalCellClasses}`}
+      className={`w-8 align-middle text-center font-bold ${valueColorMap[value]} ${globalCellClasses}`}
     >
       {value === 0
         ? "X"
@@ -62,7 +62,7 @@ export function AttackTable({
   return defenseTypes[0] !== "none" ? (
     <div className="border border-slate-400 p-2 rounded-sm">
       <div className="w-full text-center mb-2 italic">Attacking:</div>
-      <div className="flex gap-x-4">
+      <div className="flex gap-x-4 mb-2">
         <div className="w-full">
           <table className="table-auto w-full">
             <tbody>

@@ -106,7 +106,7 @@ export function DefendingSection({
           pokemon={pokemon}
           setPokemon={setPokemon}
         />
-        <div className="w-12 h-full ml-2 bg-slate-400 rounded-sm">
+        <div className="w-12 h-full ml-2 rounded-sm border border-px border-slate-400">
           {spriteUrl ? (
             <Image
               alt={pokemon?.value ?? ""}
