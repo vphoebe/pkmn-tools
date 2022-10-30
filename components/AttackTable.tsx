@@ -8,8 +8,7 @@ interface AttackTableProps {
   defenseTypes: string[];
 }
 
-const globalCellClasses =
-  "border border-2 border-slate-300 dark:border-slate-700";
+const globalCellClasses = "border border-2 border-slate-300";
 
 function MultiplierCell({ value }: { value: number }) {
   return (
@@ -54,7 +53,7 @@ export function AttackTable({
   }, [data, defenseTypes, typeList]);
 
   return defenseTypes[0] !== "none" ? (
-    <React.Fragment>
+    <div className="border border-slate-400 p-2 rounded-sm">
       <div className=" w-full text-center mb-4">Attacking:</div>
       <table className="table-auto w-full h-full ">
         <tbody>
@@ -63,6 +62,6 @@ export function AttackTable({
           ))}
         </tbody>
       </table>
-    </React.Fragment>
+    </div>
   ) : null;
 }

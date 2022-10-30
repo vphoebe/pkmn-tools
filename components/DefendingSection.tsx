@@ -98,7 +98,7 @@ export function DefendingSection({
   }, [pokemon, setDefenseTypes, gen]);
 
   return (
-    <div>
+    <div className="border border-slate-400 p-2 rounded-sm mb-4">
       <div className="w-full text-center mb-4">Defending:</div>
       <div className="mb-4 flex h-12 items-center">
         <PokemonSelector
