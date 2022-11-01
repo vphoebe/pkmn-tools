@@ -25,7 +25,7 @@ async function getPokemonTypesByName(
     const oldTypeGenNumber = getGenNumberFromUrl(oldTypeChange.generation.url);
     // can't be current gen
     const currentGenNumber = generation === "generation-v" ? 5 : 1;
-    if (oldTypeGenNumber && oldTypeGenNumber <= currentGenNumber) {
+    if (oldTypeGenNumber && oldTypeGenNumber >= currentGenNumber) {
       return {
         type1: oldTypeChange.types[0].type.name,
         type2: oldTypeChange.types[1]
