@@ -8,7 +8,8 @@ interface AttackTableProps {
   defenseTypes: string[];
 }
 
-const globalCellClasses = "border border-2 border-slate-300";
+const globalCellClasses =
+  "border border-2 border-slate-300 dark:border-slate-700 text-slate-900";
 
 function MultiplierCell({ value }: { value: number }) {
   return (

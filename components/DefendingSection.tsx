@@ -70,6 +70,8 @@ function PokemonSelector({
         value={pokemon}
         onChange={(val) => setPokemon(val)}
         isClearable
+        className="rs-container"
+        classNamePrefix="rs"
       />
     </div>
   );

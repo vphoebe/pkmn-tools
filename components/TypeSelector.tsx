@@ -13,7 +13,9 @@ export function TypeSelector({
     <select
       onChange={onChange}
       value={value}
-      className="px-4 py-2 flex-1 rounded disabled:opacity-60 disabled:cursor-not-allowed"
+      className={`dark:text-white px-4 py-2 flex-1 rounded disabled:opacity-80 disabled:cursor-not-allowed ${
+        value !== "none" ? `bg-${value}` : "dark:bg-slate-700"
+      }`}
       disabled={isDisabled}
     >
       <option value="none">(none)</option>
