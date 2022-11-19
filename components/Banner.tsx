@@ -19,11 +19,13 @@ const Banner = ({ type, message }: BannerProps) => {
   }, []);
 
   return isClosed ? null : (
-    <div className="px-2 py-4 bg-electric text-xs flex justify-center">
+    <div className="px-4 py-2 bg-electric text-xs flex justify-between items-center text-center">
+      {/* spacer */}
+      <span></span>
       <span>{message}</span>
       <button
         type="button"
-        className="absolute right-4 font-bold text-2xl leading-[12px] text-dark"
+        className="font-bold text-2xl text-dark pl-4"
         onClick={() => {
           setClosed(true);
           window.localStorage.setItem("dismissed", "true");
