@@ -31,14 +31,17 @@ async function getPokemonTypesByName(
         type2: oldTypeChange.types[1]
           ? oldTypeChange.types[1].type.name
           : "none",
-        spriteUrl: sprites.front_default,
+        spriteUrl:
+          sprites.other["official-artwork"].front_default ??
+          sprites.front_default,
       };
     }
   }
   return {
     type1: types[0].type.name,
     type2: types[1] ? types[1].type.name : "none",
-    spriteUrl: sprites.front_default,
+    spriteUrl:
+      sprites.other["official-artwork"].front_default ?? sprites.front_default,
   };
 }
 
