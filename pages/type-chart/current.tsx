@@ -15,10 +15,6 @@ export default function Current({
       <Head>
         <title>Type chart (Gen. 6+) | vphoebe&apos;s pkmn tools</title>
       </Head>
-      <Banner
-        type="alert"
-        message="Gen. 9 data (Scarlet/Violet) is not yet available. Please check back soon."
-      />
       <TypeChartTool typeData={typeData} pokemonList={pokemonList} gen={gen} />
     </React.Fragment>
   );
