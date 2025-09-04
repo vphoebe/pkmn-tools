@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -10,15 +9,6 @@ const nextConfig = {
         pathname: "/PokeAPI/sprites/master/sprites/pokemon/**",
       },
     ],
-  },
-  async redirects() {
-    return [
-      {
-        source: "/type-chart",
-        destination: "/type-chart/current",
-        permanent: true,
-      },
-    ];
   },
 };
 

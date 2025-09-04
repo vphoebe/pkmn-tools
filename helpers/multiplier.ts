@@ -1,4 +1,4 @@
-import { TypeData } from "./getTypes";
+import { TypeData } from "./getTypeData";
 
 export const valueColorMap: Record<number, string> = {
   0.5: "bg-half",
@@ -11,7 +11,7 @@ export const valueColorMap: Record<number, string> = {
 function getSingleTypeDamageValue(
   data: TypeData[],
   attackName: string,
-  defenseName: string
+  defenseName: string,
 ) {
   const attackData = data.find((d) => d.name === attackName) as TypeData;
   const { half, none, double } = attackData;
@@ -24,7 +24,7 @@ function getSingleTypeDamageValue(
 export function getMultiplier(
   data: TypeData[],
   attackName: string,
-  defenseNames: string[]
+  defenseNames: string[],
 ) {
   return defenseNames.reduce((prev, current) => {
     return (

@@ -1,28 +1,26 @@
 import * as React from "react";
-import { TypeData } from "../lib/getTypes";
-import { getMultiplier, valueColorMap } from "../lib/multiplier";
+import { getMultiplier, valueColorMap } from "../helpers/multiplier";
+import { backgroundColors } from "../helpers/colors";
+import { GenTypeData } from "../helpers/getTypeData";
 
 interface AttackTableProps {
-  data: TypeData[];
+  data: GenTypeData[];
   typeList: string[];
   defenseTypes: string[];
 }
 
-const globalCellClasses =
-  "border border-2 border-slate-300 dark:border-slate-700 text-slate-900";
-
 function MultiplierCell({ value }: { value: number }) {
   return (
     <td
-      className={`w-8 align-middle text-center font-bold ${valueColorMap[value]} ${globalCellClasses}`}
+      className={`rounded-r-sm ring w-8 align-middle text-center font-bold ${valueColorMap[value]}`}
     >
       {value === 0
         ? "X"
         : value === 0.5
-        ? "½"
-        : value === 0.25
-        ? "¼"
-        : value.toString()}
+          ? "½"
+          : value === 0.25
+            ? "¼"
+            : value.toString()}
     </td>
   );
 }
@@ -36,7 +34,9 @@ function AttackRow({
 }) {
   return multiplier !== 1 ? (
     <tr key={`${attackName}-row`}>
-      <td className={`bg-${attackName} text-right pr-2 ${globalCellClasses}`}>
+      <td
+        className={`${backgroundColors[attackName]} text-right pr-2 ring rounded-l-sm`}
+      >
         {attackName}
       </td>
       <MultiplierCell key={`${attackName}-cell`} value={multiplier} />
@@ -62,9 +62,9 @@ export function AttackTable({
 
   return defenseTypes[0] !== "none" ? (
     <div className="border border-slate-400 p-2 rounded-sm">
-      <div className="w-full text-center mb-2 italic">Attacking:</div>
-      <div className="flex gap-x-4 mb-2">
-        <div className="w-full">
+      <div className="w-full text-center mb-2 italic">Super effective:</div>
+      <div className="flex-col gap-x-4 mb-2">
+        <div className="flex-1">
           <table className="table-auto w-full">
             <tbody>
               {positiveRows.map((row) => (
@@ -73,7 +73,8 @@ export function AttackTable({
             </tbody>
           </table>
         </div>
-        <div className="w-full">
+        <div className="w-full text-center my-2 italic">Not effective:</div>
+        <div className="flex-1">
           <table className="table-auto w-full">
             <tbody>
               {negativeRows.map((row) => (
