@@ -21,28 +21,19 @@
   --color-fairy: #ee99ac;
   --color-double: #23eb80;
   --color-half: #e6aa9a;
-  --color-quarter: #804434;
-  --color-quad: #c83dff;
-  --color-blue: var(--color-blue);
-  --color-slate: var(--color-slate);
+  --color-quarter: #8e6969;
+  --color-quad: #f948dc;
+}
+
+@theme inline {
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
-    sans-serif;
 }
 
 a {

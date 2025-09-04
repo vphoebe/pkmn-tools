@@ -1,26 +1,38 @@
+import { Radio, RadioGroup } from "@headlessui/react";
+
 interface GenSelectorProps {
   gen: number;
+  introduced: number;
   setGen: (val: number) => void;
 }
 
-export function GenSelector({ gen, setGen }: GenSelectorProps) {
+export const CURRENT_GEN = 9;
+
+export function GenSelector({ gen, setGen, introduced }: GenSelectorProps) {
+  const count = Array.from({ length: CURRENT_GEN });
   return (
     <div className="flex items-center mb-4 gap-x-px">
-      <span className="mr-4">Gen:</span>
-      <select
-        onChange={(e) => setGen(parseInt(e.currentTarget.value))}
+      <RadioGroup
+        className="flex flex-1 justify-between ring rounded-sm"
+        onChange={(val) => setGen(val)}
         value={gen}
       >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-      </select>
+        <div
+          className={`font-mono text-sm flex flex-2 py-1 items-center bg-blue-800/25 rounded-l-sm justify-center border-r`}
+        >
+          GEN
+        </div>
+        {count.map((_, i) => (
+          <Radio
+            className={`font-mono cursor-pointer group flex flex-1 py-1 items-center justify-center border-black bg-zinc-100 data-checked:bg-blue-400 hover:bg-blue-200 data-checked:font-medium last:rounded-r-sm border-r last:border-0 data-disabled:bg-zinc-200 data-disabled:text-zinc-400 data-disabled:cursor-not-allowed data-disabled:italic`}
+            key={`gen${i + 1}`}
+            value={i + 1}
+            disabled={i + 1 < introduced}
+          >
+            {i + 1}
+          </Radio>
+        ))}
+      </RadioGroup>
     </div>
   );
 }

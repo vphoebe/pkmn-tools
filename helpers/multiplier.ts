@@ -1,19 +1,19 @@
-import { TypeData } from "./getTypeData";
+import { GenTypeData } from "./getTypeData";
 
 export const valueColorMap: Record<number, string> = {
   0.5: "bg-half",
   0.25: "bg-quarter",
   2: "bg-double",
   4: "bg-quad",
-  0: "bg-slate-400",
+  0: "bg-zinc-400",
 };
 
 function getSingleTypeDamageValue(
-  data: TypeData[],
+  data: GenTypeData[],
   attackName: string,
   defenseName: string,
 ) {
-  const attackData = data.find((d) => d.name === attackName) as TypeData;
+  const attackData = data.find((d) => d.name === attackName) as GenTypeData;
   const { half, none, double } = attackData;
   if (half.includes(defenseName)) return 0.5;
   if (none.includes(defenseName)) return 0;
@@ -22,7 +22,7 @@ function getSingleTypeDamageValue(
 }
 
 export function getMultiplier(
-  data: TypeData[],
+  data: GenTypeData[],
   attackName: string,
   defenseNames: string[],
 ) {
