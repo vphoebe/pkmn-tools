@@ -1,3 +1,5 @@
+"use cache";
+
 import { notFound, redirect, RedirectType } from "next/navigation";
 import MatchupsTool from "../../../components/MatchupsTool";
 import { getPokemonData } from "../../../helpers/getPokemonData";
@@ -7,7 +9,6 @@ import React from "react";
 
 interface TypeChartPageProps {
   params: Promise<{ pokemon: string[] | undefined }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function Page({ params }: TypeChartPageProps) {
