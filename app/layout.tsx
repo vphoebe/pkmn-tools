@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import React from "react"
 
 import "./globals.css"
@@ -38,7 +39,9 @@ export default function RootLayout({
       lang="en"
       className={`${plexSans.variable} ${plexMono.variable} font-sans bg-blue-100/30`}
     >
-      <body>{children}</body>
+      <body>
+        <NuqsAdapter>{children}</NuqsAdapter>
+      </body>
     </html>
   )
 }

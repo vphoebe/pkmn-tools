@@ -7,7 +7,7 @@ interface GenSelectorProps {
   setGen: React.Dispatch<React.SetStateAction<number>>
 }
 
-export const CURRENT_GEN = 9
+export const CURRENT_GEN: number = 9
 
 export function GenSelector({ gen, setGen, introduced }: GenSelectorProps) {
   const count = Array.from({ length: CURRENT_GEN })
@@ -25,7 +25,7 @@ export function GenSelector({ gen, setGen, introduced }: GenSelectorProps) {
         </div>
         {count.map((_, i) => (
           <Radio
-            className={`font-mono cursor-pointer group flex flex-1 py-1 items-center justify-center border-black bg-zinc-100 data-checked:bg-blue-400 hover:bg-blue-200 data-checked:font-medium last:rounded-r-sm border-r last:border-0 data-disabled:bg-zinc-200 data-disabled:text-zinc-400 data-disabled:cursor-not-allowed data-disabled:italic`}
+            className={`font-mono cursor-pointer group flex flex-1 py-1 items-center justify-center border-black bg-zinc-100 data-checked:bg-blue-400 hover:bg-blue-200 data-checked:font-medium last:rounded-r-sm border-r last:border-0 data-disabled:bg-zinc-200 data-disabled:text-zinc-300 data-disabled:cursor-not-allowed data-disabled:italic`}
             key={`gen${i + 1}`}
             value={i + 1}
             disabled={i + 1 < introduced}
