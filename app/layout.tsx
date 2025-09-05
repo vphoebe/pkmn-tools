@@ -1,4 +1,4 @@
-import type { Viewport } from "next"
+import type { Metadata, Viewport } from "next"
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import React from "react"
 
@@ -7,6 +7,13 @@ import "./globals.css"
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
+}
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://pkmn-tools.vphoebe.dev"),
+  openGraph: {
+    images: "/opengraph-image.png",
+  },
 }
 
 const plexSans = IBM_Plex_Sans({

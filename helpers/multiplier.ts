@@ -27,11 +27,6 @@ export function getMultiplier(
   defenseNames: string[],
 ) {
   return defenseNames.reduce((prev, current) => {
-    return (
-      prev *
-      (current !== "none"
-        ? getSingleTypeDamageValue(data, attackName, current)
-        : 1)
-    )
+    return prev * getSingleTypeDamageValue(data, attackName, current)
   }, 1)
 }
