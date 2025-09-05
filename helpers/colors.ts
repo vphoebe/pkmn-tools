@@ -17,4 +17,4 @@ export const backgroundColors = {
   dragon: "bg-dragon/50",
   dark: "bg-dark/50",
   fairy: "bg-fairy/50",
-};
+}

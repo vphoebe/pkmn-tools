@@ -1,33 +1,42 @@
-"use client";
+"use client"
 
-import React from "react";
-import useParamsUpdate from "../helpers/useParams";
-import PokeAPI from "pokedex-promise-v2";
 import {
   Combobox,
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-} from "@headlessui/react";
-import { PokemonData } from "../helpers/getPokemonData";
+} from "@headlessui/react"
+import { useRouter, useSearchParams } from "next/navigation"
+import type PokeAPI from "pokedex-promise-v2"
+import React from "react"
+
+import type { PokemonData } from "../helpers/getPokemonData"
 
 export default function PokemonSelector({
   pokemonList,
   pokemonData,
 }: {
-  pokemonList: PokeAPI.NamedAPIResource[];
-  pokemonData: PokemonData;
+  pokemonList: PokeAPI.NamedAPIResource[]
+  pokemonData: PokemonData
 }) {
-  const { updatePokemon } = useParamsUpdate();
-  const options = pokemonList.map((p) => p.name);
-  const [query, setQuery] = React.useState("");
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const options = pokemonList.map((p) => p.name)
+  const [query, setQuery] = React.useState("")
 
-  const filteredPokemon =
-    query.length > 2
-      ? options.filter((p) => {
-          return p.toLowerCase().includes(query.toLowerCase());
-        })
-      : [];
+  const filteredPokemon = React.useMemo(
+    () =>
+      query.length > 2
+        ? options.filter((p) => {
+            return p.toLowerCase().includes(query.toLowerCase())
+          })
+        : [],
+    [options, query],
+  )
+
+  const updatePokemon = (pokemon: string) => {
+    router.push(`${pokemon}?${searchParams.toString()}`)
+  }
 
   return (
     <Combobox
@@ -56,5 +65,5 @@ export default function PokemonSelector({
         ))}
       </ComboboxOptions>
     </Combobox>
-  );
+  )
 }

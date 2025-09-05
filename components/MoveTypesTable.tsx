@@ -1,14 +1,16 @@
-import * as React from "react";
-import { getMultiplier, valueColorMap } from "../helpers/multiplier";
-import { backgroundColors } from "../helpers/colors";
-import { GenTypeData, getTypeDataForGen } from "../helpers/getTypeData";
-import PokeAPI from "pokedex-promise-v2";
-import { getGenTypesFromPokemon, PokemonData } from "../helpers/getPokemonData";
+import type PokeAPI from "pokedex-promise-v2"
+import * as React from "react"
+
+import { backgroundColors } from "../helpers/colors"
+import type { PokemonData } from "../helpers/getPokemonData"
+import { getGenTypesFromPokemon } from "../helpers/getPokemonData"
+import { getTypeDataForGen } from "../helpers/getTypeData"
+import { getMultiplier, valueColorMap } from "../helpers/multiplier"
 
 interface MoveTypesTableProps {
-  gen: number;
-  pokemonData: PokemonData;
-  allTypeData: PokeAPI.Type[];
+  gen: number
+  pokemonData: PokemonData
+  allTypeData: PokeAPI.Type[]
 }
 
 function MultiplierCell({ value }: { value: number }) {
@@ -25,15 +27,15 @@ function MultiplierCell({ value }: { value: number }) {
             : value.toString()}
       <span className="font-mono">X</span>
     </div>
-  );
+  )
 }
 
 function AttackRow({
   attackName,
   multiplier,
 }: {
-  attackName: string;
-  multiplier: number;
+  attackName: string
+  multiplier: number
 }) {
   return multiplier !== 1 ? (
     <div className="flex align-middle">
@@ -45,7 +47,7 @@ function AttackRow({
       </div>
       <MultiplierCell key={`${attackName}-cell`} value={multiplier} />
     </div>
-  ) : null;
+  ) : null
 }
 
 function EffectiveGroup({ heading, rows }) {
@@ -58,7 +60,7 @@ function EffectiveGroup({ heading, rows }) {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 export function MoveTypesTable({
@@ -66,29 +68,29 @@ export function MoveTypesTable({
   pokemonData,
   allTypeData,
 }: MoveTypesTableProps) {
-  const typeData = getTypeDataForGen(allTypeData, gen);
-  const typeList = typeData.map((d) => d.name);
+  const typeData = getTypeDataForGen(allTypeData, gen)
+  const typeList = typeData.map((d) => d.name)
   const defenseTypes = getGenTypesFromPokemon(pokemonData, gen).map(
     (t) => t.type.name,
-  );
+  )
 
   const values = typeList.map((attackName) => {
-    const multiplier = getMultiplier(typeData, attackName, defenseTypes);
-    return { attackName, multiplier };
-  });
+    const multiplier = getMultiplier(typeData, attackName, defenseTypes)
+    return { attackName, multiplier }
+  })
 
   const positiveRows = values
     .filter((row) => row.multiplier > 1)
-    .sort((a, b) => b.multiplier - a.multiplier);
+    .sort((a, b) => b.multiplier - a.multiplier)
 
   const negativeRows = values
     .filter((row) => row.multiplier < 1)
-    .sort((a, b) => a.multiplier - b.multiplier);
+    .sort((a, b) => a.multiplier - b.multiplier)
 
   return defenseTypes[0] !== "none" ? (
     <div className="p-4 rounded-sm flex flex-col gap-6">
       <EffectiveGroup heading="super effective" rows={positiveRows} />
       <EffectiveGroup heading="not effective" rows={negativeRows} />
     </div>
-  ) : null;
+  ) : null
 }

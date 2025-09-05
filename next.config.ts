@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-};
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/matchups/pikachu",
+        permanent: false,
+      },
+    ]
+  },
+}
 
-export default nextConfig;
+export default nextConfig

@@ -1,28 +1,30 @@
-import { Viewport } from "next";
-import "./globals.css";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import type { Viewport } from "next"
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
+import React from "react"
+
+import "./globals.css"
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
-};
+}
 
 const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-plex-sans",
-});
+})
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-plex-mono",
-});
+})
 
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html
@@ -31,5 +33,5 @@ export default function RootLayout({
     >
       <body>{children}</body>
     </html>
-  );
+  )
 }

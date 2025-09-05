@@ -1,15 +1,16 @@
-import { Radio, RadioGroup } from "@headlessui/react";
+import { Radio, RadioGroup } from "@headlessui/react"
+import type React from "react"
 
 interface GenSelectorProps {
-  gen: number;
-  introduced: number;
-  setGen: (val: number) => void;
+  gen: number
+  introduced: number
+  setGen: React.Dispatch<React.SetStateAction<number>>
 }
 
-export const CURRENT_GEN = 9;
+export const CURRENT_GEN = 9
 
 export function GenSelector({ gen, setGen, introduced }: GenSelectorProps) {
-  const count = Array.from({ length: CURRENT_GEN });
+  const count = Array.from({ length: CURRENT_GEN })
   return (
     <div className="flex items-center mb-4 gap-x-px">
       <RadioGroup
@@ -34,5 +35,5 @@ export function GenSelector({ gen, setGen, introduced }: GenSelectorProps) {
         ))}
       </RadioGroup>
     </div>
-  );
+  )
 }

@@ -1,1 +1,8 @@
-{}
+{
+  "semi": false,
+  "printWidth": 80,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["^[./]", "^@/components/(.*)$", "^@/helpers/(.*)$"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
