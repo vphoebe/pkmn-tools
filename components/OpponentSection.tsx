@@ -12,12 +12,9 @@ interface OpponentSectionProps {
   pokemonList: PokeAPI.NamedAPIResource[]
 }
 
-const typeClassName = (type: string) =>
-  `${backgroundColors[type]} p-1 ring rounded-sm flex-1 text-center uppercase font-mono`
-
 function Sprite({ url, name }: { url?: string; name: string }) {
   return (
-    <div className="flex-1">
+    <div className="flex flex-1 items-center justify-center rounded-sm border p-1 dark:border-zinc-500">
       {url ? (
         <Image
           priority={true}
@@ -40,21 +37,24 @@ export function OpponentSection({
   const genTypes = getGenTypesFromPokemon(pokemonData, gen)
   const spriteUrl = getGenSprite(gen, sprites)
   return (
-    <div className="flex flex-col border px-4 pt-4 pb-6 rounded-md gap-4 bg-zinc-50">
-      <div className="text-center italic font-medium leading-none">
+    <div className="flex flex-col gap-4 rounded-md border bg-blue-50 px-4 pt-4 pb-6 dark:border-zinc-500 dark:bg-blue-950/10">
+      <div className="text-center leading-none font-medium italic">
         opponent
       </div>
-      <div className="flex gap-2">
-        <div className="flex-1">
-          <div className="flex mb-4 h-12 items-center">
+      <div className="flex gap-3">
+        <div className="flex flex-1 flex-col justify-between">
+          <div className="flex items-center">
             <PokemonSelector
               pokemonData={pokemonData}
               pokemonList={pokemonList}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 dark:text-black">
             {genTypes.map((t) => (
-              <span key={t.type.name} className={typeClassName(t.type.name)}>
+              <span
+                key={t.type.name}
+                className={`${backgroundColors[t.type.name]} flex-1 rounded-sm p-1 text-center font-mono text-sm uppercase ring`}
+              >
                 {t.type.name}
               </span>
             ))}

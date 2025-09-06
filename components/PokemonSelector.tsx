@@ -54,27 +54,27 @@ export default function PokemonSelector({
         <ComboboxInput
           aria-label="Assignee"
           onChange={(event) => setQuery(event.target.value)}
-          className="flex-1 py-2 px-2 rounded-sm border bg-white"
+          className="flex-1 rounded-sm border bg-white px-2 py-2 dark:bg-zinc-400 dark:text-black"
           onFocus={(e) => e.currentTarget.select()}
           autoCorrect="off"
-          autoCapitalize="off"
+          autoCapitalize="none"
           spellCheck={false}
         />
         {isPending && (
-          <div className="flex absolute inset-y-0 right-0 px-2 items-center">
+          <div className="absolute inset-y-0 right-0 flex items-center px-2">
             <Spinner />
           </div>
         )}
       </div>
       <ComboboxOptions
         anchor={{ to: "bottom" }}
-        className="w-(--input-width) border rounded-sm empty:invisible"
+        className="w-(--input-width) rounded-sm border empty:invisible dark:text-black"
       >
         {filteredPokemon.map((p) => (
           <ComboboxOption
             key={p}
             value={p}
-            className="p-2 gap-2 bg-white data-focus:bg-blue-100"
+            className="gap-2 bg-white p-2 data-focus:bg-blue-100"
           >
             {p}
           </ComboboxOption>

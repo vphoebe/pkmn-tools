@@ -1,7 +1,10 @@
 {
   "semi": false,
   "printWidth": 80,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
   "importOrder": ["^[./]", "^@/components/(.*)$", "^@/helpers/(.*)$"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true

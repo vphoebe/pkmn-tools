@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next"
+import { ThemeProvider } from "next-themes"
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import React from "react"
@@ -36,11 +37,14 @@ export default function RootLayout({
 }) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
-      className={`${plexSans.variable} ${plexMono.variable} font-sans bg-blue-100/30`}
+      className={`dark ${plexSans.variable} ${plexMono.variable} h-dvh bg-blue-100/30 font-sans transition-colors dark:bg-zinc-900`}
     >
-      <body>
-        <NuqsAdapter>{children}</NuqsAdapter>
+      <body className="h-full">
+        <ThemeProvider attribute="class">
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -16,16 +16,19 @@ interface MoveTypesTableProps {
 function MultiplierCell({ value }: { value: number }) {
   return (
     <div
-      className={`flex flex-1 p-1 rounded-r-sm ring items-center text-center ${valueColorMap[value]}`}
+      className={`flex items-center justify-center rounded-r-sm p-1 text-sm ring ${valueColorMap[value]}`}
     >
-      {value === 0
-        ? "0"
-        : value === 0.5
-          ? "½"
-          : value === 0.25
-            ? "¼"
-            : value.toString()}
-      <span className="font-mono">X</span>
+      <span className="font-mono">
+        {" "}
+        {value === 0
+          ? "0"
+          : value === 0.5
+            ? "½"
+            : value === 0.25
+              ? "¼"
+              : value.toString()}
+        X
+      </span>
     </div>
   )
 }
@@ -41,7 +44,7 @@ function AttackRow({
     <div className="flex align-middle">
       <div
         key={`${attackName}-row`}
-        className={`${backgroundColors[attackName]} py-1 px-2 ring rounded-l-sm flex-4 text-sm font-medium uppercase font-mono flex items-center`}
+        className={`${backgroundColors[attackName]} flex items-center rounded-l-sm px-2 py-1 font-mono text-xs font-medium uppercase ring`}
       >
         {attackName}
       </div>
@@ -52,9 +55,9 @@ function AttackRow({
 
 function EffectiveGroup({ heading, rows }) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="text-center italic font-medium">{heading}</div>
-      <div className="flex gap-4 justify-center flex-wrap">
+    <div className="flex flex-col gap-2 px-2 pt-4 pb-6 first:rounded-t-md first:bg-green-50 last:rounded-b-md last:border-t last:bg-red-50 dark:first:bg-green-950/25 last:dark:border-zinc-500 dark:last:bg-red-950/25">
+      <div className="text-center font-medium italic">{heading}</div>
+      <div className="flex flex-wrap justify-center gap-4 dark:text-black">
         {rows.map((row) => (
           <AttackRow key={row.attackName} {...row} />
         ))}
@@ -88,7 +91,7 @@ export function MoveTypesTable({
     .sort((a, b) => a.multiplier - b.multiplier)
 
   return defenseTypes[0] !== "none" ? (
-    <div className="p-4 rounded-sm flex flex-col gap-6">
+    <div className="flex flex-col rounded-md border bg-zinc-50 dark:border-zinc-500 dark:bg-zinc-900">
       <EffectiveGroup heading="super effective" rows={positiveRows} />
       <EffectiveGroup heading="not effective" rows={negativeRows} />
     </div>

@@ -8,6 +8,7 @@ import type { PokemonData } from "../helpers/getPokemonData"
 import { CURRENT_GEN, GenSelector } from "./GenSelector"
 import { MoveTypesTable } from "./MoveTypesTable"
 import { OpponentSection } from "./OpponentSection"
+import ThemeSwitch from "./ThemeSwitch"
 
 export interface MatchupsToolProps {
   pokemonData: PokemonData
@@ -34,18 +35,26 @@ export default function MatchupsTool({
   }, [gen, introduced, setGen])
 
   return (
-    <div className="max-w-sm mx-auto mt-8 px-4">
-      <GenSelector gen={gen} setGen={setGen} introduced={introduced} />
-      <OpponentSection
-        gen={gen}
-        pokemonData={pokemonData}
-        pokemonList={pokemonList}
-      />
-      <MoveTypesTable
-        gen={gen}
-        pokemonData={pokemonData}
-        allTypeData={allTypeData}
-      />
+    <div className="mx-auto flex h-full max-w-sm flex-col justify-between px-4 py-8">
+      <div>
+        <GenSelector gen={gen} setGen={setGen} introduced={introduced} />
+        <div className="flex flex-col gap-4">
+          <OpponentSection
+            gen={gen}
+            pokemonData={pokemonData}
+            pokemonList={pokemonList}
+          />
+          <MoveTypesTable
+            gen={gen}
+            pokemonData={pokemonData}
+            allTypeData={allTypeData}
+          />
+        </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="font-medium italic">type matchup tool</span>
+        <ThemeSwitch />
+      </div>
     </div>
   )
 }
