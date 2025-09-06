@@ -55,6 +55,7 @@ export default function PokemonSelector({
           aria-label="Assignee"
           onChange={(event) => setQuery(event.target.value)}
           className="flex-1 py-2 px-2 rounded-sm border bg-white"
+          onFocus={(e) => e.currentTarget.select()}
         />
         {isPending && (
           <div className="flex absolute inset-y-0 right-0 px-2 items-center">
