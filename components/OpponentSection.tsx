@@ -42,7 +42,7 @@ export function OpponentSection({
         opponent
       </div>
       <div className="flex gap-3">
-        <div className="flex flex-1 flex-col justify-between">
+        <div className="flex flex-1 flex-col justify-center gap-4">
           <div className="flex items-center">
             <PokemonSelector
               pokemonData={pokemonData}
