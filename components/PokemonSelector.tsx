@@ -56,6 +56,9 @@ export default function PokemonSelector({
           onChange={(event) => setQuery(event.target.value)}
           className="flex-1 py-2 px-2 rounded-sm border bg-white"
           onFocus={(e) => e.currentTarget.select()}
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
         />
         {isPending && (
           <div className="flex absolute inset-y-0 right-0 px-2 items-center">
