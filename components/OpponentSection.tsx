@@ -37,10 +37,7 @@ export function OpponentSection({
   const genTypes = getGenTypesFromPokemon(pokemonData, gen)
   const spriteUrl = getGenSprite(gen, sprites)
   return (
-    <div className="flex flex-col gap-4 rounded-md border bg-blue-50 px-4 pt-4 pb-6 dark:border-zinc-500 dark:bg-blue-950/10">
-      <div className="text-center leading-none font-medium italic">
-        opponent
-      </div>
+    <div className="flex flex-col gap-4 rounded-md border bg-blue-50 p-4 dark:border-zinc-500 dark:bg-blue-950/10">
       <div className="flex gap-3">
         <div className="flex flex-1 flex-col justify-center gap-4">
           <div className="flex items-center">

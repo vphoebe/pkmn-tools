@@ -40,8 +40,8 @@ const ThemeSwitch = () => {
         value={theme}
       >
         <IconButton value="system" icon={<ComputerDesktopIcon />} />
-        <IconButton value="dark" icon={<MoonIcon />} />
         <IconButton value="light" icon={<SunIcon />} />
+        <IconButton value="dark" icon={<MoonIcon />} />
       </RadioGroup>
     </div>
   )

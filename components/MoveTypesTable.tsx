@@ -55,7 +55,7 @@ function AttackPill({
 
 function EffectiveGroup({ heading, rows }) {
   return (
-    <div className="flex flex-col gap-2 px-2 pt-4 pb-6 first:rounded-t-md first:bg-green-50 last:rounded-b-md last:border-t last:bg-red-50 dark:first:bg-green-950/25 last:dark:border-zinc-500 dark:last:bg-red-950/25">
+    <div className="flex flex-col gap-2 px-2 pt-2 pb-4 first:rounded-t-md first:bg-green-50 last:rounded-b-md last:border-t last:bg-red-50 dark:first:bg-green-950/25 last:dark:border-zinc-500 dark:last:bg-red-950/25">
       <div className="text-center font-medium italic">{heading}</div>
       <div className="flex flex-wrap justify-center gap-3 dark:text-black">
         {rows.map((row) => (
