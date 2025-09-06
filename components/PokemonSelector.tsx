@@ -11,6 +11,7 @@ import type PokeAPI from "pokedex-promise-v2"
 import React from "react"
 
 import type { PokemonData } from "../helpers/getPokemonData"
+import Spinner from "./Spinner"
 
 export default function PokemonSelector({
   pokemonList,
@@ -22,11 +23,13 @@ export default function PokemonSelector({
   const searchParams = useSearchParams()
   const router = useRouter()
   const options = pokemonList.map((p) => p.name)
+  const [value, setValue] = React.useState(pokemonData.name)
   const [query, setQuery] = React.useState("")
+  const [isPending, startTransition] = React.useTransition()
 
   const filteredPokemon = React.useMemo(
     () =>
-      query.length > 2
+      query.length > 1
         ? options.filter((p) => {
             return p.toLowerCase().includes(query.toLowerCase())
           })
@@ -34,22 +37,31 @@ export default function PokemonSelector({
     [options, query],
   )
 
-  const updatePokemon = (pokemon: string) => {
-    router.push(`${pokemon}?${searchParams.toString()}`)
+  const changePokemon = (newPokemonName: string) => {
+    setValue(newPokemonName)
+    startTransition(() =>
+      router.push(`${newPokemonName}?${searchParams.toString()}`),
+    )
   }
 
   return (
     <Combobox
-      value={pokemonData.name}
-      onChange={(val) => (val ? updatePokemon(val) : undefined)}
+      value={value}
+      onChange={(val) => (val ? changePokemon(val) : undefined)}
       onClose={() => setQuery("")}
     >
-      <ComboboxInput
-        aria-label="Assignee"
-        displayValue={(p) => p as string}
-        onChange={(event) => setQuery(event.target.value)}
-        className="flex-1 h-full px-2 rounded-sm border bg-white"
-      />
+      <div className="relative">
+        <ComboboxInput
+          aria-label="Assignee"
+          onChange={(event) => setQuery(event.target.value)}
+          className="flex-1 py-2 px-2 rounded-sm border bg-white"
+        />
+        {isPending && (
+          <div className="flex absolute inset-y-0 right-0 px-2 items-center">
+            <Spinner />
+          </div>
+        )}
+      </div>
       <ComboboxOptions
         anchor={{ to: "bottom" }}
         className="w-(--input-width) border rounded-sm empty:invisible"
